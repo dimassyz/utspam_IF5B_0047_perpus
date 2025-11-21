@@ -66,37 +66,37 @@ class DbHelper {
   Future<void> _insertDummyData(Database db) async {
     List<Map<String, dynamic>> books = [
       {
-        'title': '1984',
+        'judul': '1984',
         'genre': 'Novel',
-        'rental_price': 30000,
+        'harga_rental': 30000,
         'cover_path': 'assets/images/1984.jpg',
         'sinopsis': 'Novel “1984” bercerita tentang suatu masa di sekitar tahun 1984. Orwell menggambarkan masa itu sebagai masa yang penuh penderitaan. Dalam semesta “1984”, dunia dibagi menjadi tiga poros kuasa; Oceania, Eurasia, dan Eastasia. Setiap negara dipimpin oleh satu partai. Mereka semua berhaluan sosialis. Setiap negara juga menerapkan sistem totalitarian. Novel ini fokus menceritakan Oceania, khususnya London dimana sang tokoh utama hidup. Oceania dipimpin oleh Big Brother (Bung Besar) yang wajahnya tertera di poster-poster di berbagai penjuru negara. Sistem kediktatoran yang diterapkan membuat semua warganya harus tunduk dan patuh. Kedisiplinan ini sifatnya menyeluruh. Mulai dari jadwal bangun tidur, hiburan, buku yang dibaca, bahkan ekspresi muka dan pikiran.'
       },
       {
-        'title': 'Animal Farm',
+        'judul': 'Animal Farm',
         'genre': 'Novel',
-        'rental_price': 35000,
+        'harga_rental': 35000,
         'cover_path': 'assets/images/animalfarm.jpg',
-        'synopsis': 'Dongeng tentang para penguasa ini merupakan satir yang menggambarkan bagaimana sifat asli manusia dan karakternya ketika memiliki kekuasaan yang besar. Sebagai cerita yang ditulis sejak 17 Agustus 1945 ini, kisahnya terus diceritakan di banyak negara dan bahasa selama lebih dari 70 tahun.'
+        'sinopsis': 'Dongeng tentang para penguasa ini merupakan satir yang menggambarkan bagaimana sifat asli manusia dan karakternya ketika memiliki kekuasaan yang besar. Sebagai cerita yang ditulis sejak 17 Agustus 1945 ini, kisahnya terus diceritakan di banyak negara dan bahasa selama lebih dari 70 tahun.'
       },
       {
-        'title': 'Don Quixote',
+        'judul': 'Don Quixote',
         'genre': 'Novel',
-        'rental_price': 25000,
+        'harga_rental': 25000,
         'cover_path': 'assets/images/donquixote.jpg',
         'sinopsis': 'Novel ini berkisah tentang sosok Alonso Quixando, seorang bangsawan Spanyol yang senang membaca kisah dongeng ksatria, sampai-sampai ia harus kehilangan akal dan mengidap halusinasi.'
       },
        {
-        'title': 'To Kill a Mockingbird',
+        'judul': 'To Kill a Mockingbird',
         'genre': 'Novel',
-        'rental_price': 30000,
+        'harga_rental': 30000,
         'cover_path': 'assets/images/mockingbird.jpg',
         'sinopsis': 'To Kill a Mockingbird adalah novel klasik karya Harper Lee yang berlatar tahun 1930-an di Alabama dan mengisahkan tentang rasisme, ketidakadilan, dan prasangka'
       },
       {
-        'title': 'Di Tanah Lada',
+        'judul': 'Di Tanah Lada',
         'genre': 'Novel',
-        'rental_price': 20000,
+        'harga_rental': 20000,
         'cover_path': 'assets/images/tanahlada.jpg',
         'sinopsis': 'Di Tanah Lada mengisahkan tentang Ava, seorang anak perempuan berusia 6 tahun yang tinggal bersama orang tua yang kasar dan sering mengalami kekerasan verbal maupun fisik dari ayahnya.'
       },

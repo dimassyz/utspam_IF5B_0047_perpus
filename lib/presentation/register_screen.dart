@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../data/repository/auth_repository.dart'; 
 import '../data/model/user.dart';
 import 'login_screen.dart';
@@ -59,7 +60,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Gagal: Username atau Email mungkin sudah terdaftar.'),
+            content: Text('Error: ${e.toString()}'),
             backgroundColor: Colors.red,
           ),
         );
@@ -70,7 +71,205 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+       backgroundColor: Colors.white,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            children: [
+              const Icon(Icons.menu_book_rounded, size: 60, color: Colors.blue),
+              const SizedBox(height: 10),
+              const Text(
+                'Formulir Pendaftaran',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue,
+                ),
+              ),
+              const Text(
+                'Lengkapi data diri untuk mendaftar',
+                style: TextStyle(color: Colors.grey),
+              ),
+              const SizedBox(height: 24),
+
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+
+                    // form nama
+                    TextFormField(
+                      controller: _namaCtr,
+                      decoration: InputDecoration(
+                        labelText: 'Nama Lengkap',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.vertical()
+                        ),
+                        prefixIcon: Icon(Icons.person),
+                      ),
+
+                      validator: (val) => val!.isEmpty ? 'Wajib diisi' : null,
+                    ),
+                    const SizedBox(height: 16),
+
+                    // form nik
+                    TextFormField(
+                      controller: _nikCtr,
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      decoration: InputDecoration(
+                        labelText: 'NIK',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.vertical()
+                        ),
+                        prefixIcon: Icon(Icons.badge_sharp),
+                      ),
+
+                      validator: (val) => val!.isEmpty ? 'Wajib diisi' : null,
+                    ),
+                    const SizedBox(height: 16),
+
+                    // form username
+                    TextFormField(
+                      controller: _usernameCtr,
+                      decoration: InputDecoration(
+                        labelText: 'Username',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.vertical()
+                        ),
+                        prefixIcon: Icon(Icons.account_circle_rounded),
+                      ),
+
+                      validator: (val) => val!.isEmpty ? 'Wajib diisi' : null,
+                    ),
+                    const SizedBox(height: 16),
+
+                    // form email
+                    TextFormField(
+                      controller: _emailCtr,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        labelText: 'Email',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.vertical()
+                        ),
+                        prefixIcon: Icon(Icons.email),
+                      ),
+
+                      validator: (value) {
+                        if (value == null || value.isEmpty) return 'Wajib diisi';
+                        if (!value.endsWith('@gmail.com')) {
+                          return 'Email harus berformat @gmail.com';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 16),
+
+                    // form alamat
+                    TextFormField(
+                      controller: _alamatCtr,
+                      decoration: InputDecoration(
+                        labelText: 'Alamat',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.vertical()
+                        ),
+                        prefixIcon: Icon(Icons.location_on),
+                      ),
+
+                      validator: (val) => val!.isEmpty ? 'Wajib diisi' : null,
+                    ),
+                    const SizedBox(height: 16),
+
+                    // form nomor telpon
+                    TextFormField(
+                      controller: _telpCtr,
+                      keyboardType: TextInputType.phone,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      decoration: InputDecoration(
+                        labelText: 'Nomor Telepon',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.vertical()
+                        ),
+                        prefixIcon: Icon(Icons.phone),
+                      ),
+
+                      validator: (val) => val!.isEmpty ? 'Wajib diisi' : null,
+                    ),
+                    const SizedBox(height: 16),
+
+                    // form password
+                    TextFormField(
+                      controller: _passCtr,
+                      obscureText: passwordInvisible,
+                      decoration: InputDecoration(
+                        labelText: 'Password',
+                        border: OutlineInputBorder(borderRadius: BorderRadius.vertical()),
+                        prefixIcon: const Icon(Icons.lock),
+                        suffixIcon: IconButton(
+                          icon: Icon(passwordInvisible ? Icons.visibility_off : Icons.visibility),
+                          onPressed: () => setState(() => passwordInvisible = !passwordInvisible),
+                        ),
+                      ),
+
+                      validator: (val) {
+                        if (val == null || val.isEmpty) return 'Wajib diisi';
+                        if (val.length < 6) return 'Minimal 6 karakter';
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 30),
+
+                    // tombol daftar
+                    SizedBox(
+                      width: double.infinity,
+                      height: 50,
+                      child: ElevatedButton(
+                        onPressed: _handleRegister,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: const Text('DAFTAR SEKARANG', style: TextStyle(fontWeight: FontWeight.bold)),
+                      ),
+                    ),
+                    
+                    const SizedBox(height: 20),
+
+                    // tombol kembali ke login
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "Sudah punya akun? ",
+                          style: TextStyle(color: Colors.black54),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text(
+                            "Login disini",
+                            style: TextStyle(
+                              color: Colors.orange,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20), 
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
