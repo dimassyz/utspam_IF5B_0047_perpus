@@ -3,7 +3,7 @@ class Transaction {
   final int userId;
   final int bookId;
   final String tglPinjam;
-  final int lamaPinjam;
+  final int durasiPinjam;
   final int totalBiaya;
   final String status;
 
@@ -12,7 +12,7 @@ class Transaction {
     required this.userId, 
     required this.bookId, 
     required this.tglPinjam, 
-    required this.lamaPinjam, 
+    required this.durasiPinjam, 
     required this.totalBiaya, 
     required this.status
     });
@@ -31,7 +31,7 @@ class Transaction {
       userId: userId ?? this.userId,
       bookId: bookId ?? this.bookId,
       tglPinjam: tglPinjam ?? this.tglPinjam,
-      lamaPinjam: lamaPinjam ?? this.lamaPinjam,
+      durasiPinjam: durasiPinjam ?? this.durasiPinjam,
       totalBiaya: totalBiaya ?? this.totalBiaya,
       status: status ?? this.status,
     );
@@ -43,7 +43,7 @@ class Transaction {
       'user_id': userId,
       'book_id': bookId,
       'tgl_pinjam': tglPinjam,
-      'lama_pinjam': lamaPinjam,
+      'durasi_pinjam': durasiPinjam,
       'total_biaya': totalBiaya,
       'status': status,
     };
@@ -55,7 +55,7 @@ class Transaction {
       userId: map['user_id'] as int, 
       bookId: map['book_id'] as int, 
       tglPinjam: map['tgl_pinjam'] as String, 
-      lamaPinjam: map['lama_pinjam'] as int, 
+      durasiPinjam: map['durasi_pinjam'] as int, 
       totalBiaya: map['total_biaya'] as int, 
       status: map['status'] as String,
       );

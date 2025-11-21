@@ -6,7 +6,7 @@ class Book {
   final String genre;
   final String harga;
   final String coverPath;
-  final String synopsis;
+  final String sinopsis;
 
   Book({
     required this.id, 
@@ -14,7 +14,7 @@ class Book {
     required this.genre, 
     required this.harga, 
     required this.coverPath, 
-    required this.synopsis
+    required this.sinopsis
     });
 
     Map<String, dynamic> toMap(){
@@ -22,9 +22,9 @@ class Book {
         'id': id,
         'judul': judul,
         'genre': genre,
-        'harga': harga,
-        'coverPath': coverPath,
-        'synopsis': synopsis,
+        'harga_rental': harga,
+        'cover_path': coverPath,
+        'sinopsis': sinopsis,
       };
     }
 
@@ -33,9 +33,9 @@ class Book {
         id: map['id'], 
         judul: map['judul'], 
         genre: map['genre'], 
-        harga: map['harga'], 
-        coverPath: map['coverPath'], 
-        synopsis: map['synopsis'], 
+        harga: map['harga_rental'], 
+        coverPath: map['cover_path'], 
+        sinopsis: map['sinopsis'], 
         );
     }
   }

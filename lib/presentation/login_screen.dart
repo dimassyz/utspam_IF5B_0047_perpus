@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart'; // Wajib import ini
+import '../data/repository/auth_repository.dart'; // Import Repository
+import '../data/model/user.dart'; // Import Model
 import 'home_screen.dart';
 import 'register_screen.dart';
 
@@ -11,95 +14,118 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _emailCtr = TextEditingController();
+  final _identifierCtr = TextEditingController(); 
   final _passwordCtr = TextEditingController();
   bool isObscure = true;
+  final AuthRepository _authRepository = AuthRepository();
+
+  // Fungsi login
+  void _performLogin() async {
+    if (_formKey.currentState!.validate()) {
+
+      final String input = _identifierCtr.text;
+      final String pass = _passwordCtr.text;
+      User? user = await _authRepository.loginUser(input, pass);
+
+      if (user != null) {
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setInt('userId', user.id!); 
+        await prefs.setString('userName', user.namaLengkap);
+        await prefs.setBool('isLoggedIn', true);
+
+        if (!mounted) return;
+
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+          (route) => false,
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Login Gagal! Email/NIK atau Password salah.'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.only(
-            left: 20,
-            right: 20,
-            top: 20,
-          ),
-          child: Center(
+        child: Center( // Bungkus SingleChild dengan Center biar rapi
+          child: SingleChildScrollView(
+            padding: EdgeInsets.symmetric(horizontal: 24),
             child: Column(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-               
-                  SizedBox(height: 15),
+                Image.asset(
+                  'assets/images/logobuku.png',
+                  width: 300,
+                  height: 150,
+                ),
+                SizedBox(height: 20),
                 Text(
-                  "Selamat Datang, Bobotoh!",
+                  "Login ke akun anda",
                   style: TextStyle(
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blue,
+                    fontSize: 25,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                    
                   ),
                 ),
-                SizedBox(height: 4),
+                SizedBox(height: 8),
                 Text(
-                  "Login dengan akun anda untuk melanjutkan",
+                  "Silahkan gunakan NIK / Email untuk login",
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 14, color: Color.fromARGB(137, 10, 7, 7)),
+                  style: TextStyle(color: Colors.grey[600]),
                 ),
-                SizedBox(height: 30),
+                SizedBox(height: 40),
 
                 Form(
                   key: _formKey,
                   child: Column(
                     children: [
+
+                      // email/nik
                       TextFormField(
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        controller: _emailCtr,
+                        controller: _identifierCtr,
                         decoration: InputDecoration(
-                          labelText: 'Email',
-                          border: OutlineInputBorder(),
-                          suffixIcon: Icon(Icons.mail_outline_rounded)
+                          labelText: 'Email / NIK',
+                          hintText: 'Masukkan Email atau NIK anda',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          prefixIcon: Icon(Icons.person_outline),
                         ),
+
+                        // validasi email/nik
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Email wajib diisi';
-                          }
-                          if (value.contains('@') == false) {
-                            return 'Format email tidak valid';
-                          }
-
-                          List<String> cekDomain = [
-                            '@gmail.com',
-                            '@yahoo.com',
-                            '@student.ac.id',
-                            '@ymail.com'
-                          ];
-                          bool validDomain = false;
-                          for (String domain in cekDomain) {
-                            if (value.endsWith(domain)) {
-                              validDomain = true;
-                              break;
-                            }
-                          }
-                          if (!validDomain) {
-                            return 'Gunakan email yang sesuai/domain lain';
+                            return 'Email atau NIK wajib diisi';
                           }
                           return null;
                         },
                       ),
                       SizedBox(height: 16),
+
+                      // password
                       TextFormField(
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
                         controller: _passwordCtr,
+                        obscureText: isObscure,
                         decoration: InputDecoration(
                           labelText: 'Password',
-                          border: OutlineInputBorder(),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          prefixIcon: Icon(Icons.lock_outline),
                           suffixIcon: IconButton(
-                            icon: Icon(
-                              isObscure
-                                  ? Icons.visibility_off
-                                  : Icons.visibility,
-                            ),
+                            icon: Icon(isObscure
+                                ? Icons.visibility_off
+                                : Icons.visibility),
                             onPressed: () {
                               setState(() {
                                 isObscure = !isObscure;
@@ -107,44 +133,46 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                           ),
                         ),
+
+                        // validasi password
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Password wajib diisi';
                           }
-                          if (value.length < 6) {
-                            return 'Password minimal 6 karakter';
-                          }
                           return null;
                         },
-                        obscureText: isObscure,
                       ),
                       SizedBox(height: 24),
+
+                      // TOMBOL LOGIN
                       SizedBox(
-                        height: 45,
                         width: double.infinity,
+                        height: 50,
                         child: ElevatedButton(
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => HomeScreen(),
-                                ),
-                                (route) => false,
-                              );
-                            }
-                          },
-                          child: Text('Login'),
+                          onPressed: _performLogin,
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blue,
+                            backgroundColor: Colors.black,
                             foregroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          child: Text(
+                            'LOGIN',
+                            style: TextStyle(
+                              fontSize: 16, 
+                              fontWeight: FontWeight.bold
+                            ),
                           ),
                         ),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height: 16),
+
+                SizedBox(height: 24),
+                
+                // tombol registrasi
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -159,9 +187,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         );
                       },
                       child: Text(
-                        "Daftar",
+                        "Daftar Sekarang",
                         style: TextStyle(
-                          color: Colors.blueAccent,
+                          color: Colors.deepOrange,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

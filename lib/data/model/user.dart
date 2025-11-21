@@ -25,7 +25,7 @@ class User {
       return {
         'id': id,
         'nik': nik,
-        'namaLengkap': namaLengkap,
+        'nama_lengkap': namaLengkap,
         'email': email,
         'alamat': alamat,
         'telp': telp,
@@ -38,7 +38,7 @@ class User {
       return User(
         id: map['id'], 
         nik: map['nik'], 
-        namaLengkap: map['namaLengkap'], 
+        namaLengkap: map['nama_lengkap'], 
         email: map['email'], 
         alamat: map['alamat'], 
         telp: map['telp'], 
