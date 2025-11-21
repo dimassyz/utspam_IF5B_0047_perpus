@@ -60,7 +60,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error: ${e.toString()}'),
+            content: Text('Gagal: Username atau Email mungkin sudah terdaftar.'),
             backgroundColor: Colors.red,
           ),
         );
