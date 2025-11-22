@@ -1,16 +1,33 @@
-# perpustakaan
+- Screenshot Aplikasi
 
-A new Flutter project.
+- **Halaman Login**
+  <img width="278" height="591" alt="login" src="https://github.com/user-attachments/assets/1307f6ba-34aa-453a-8562-21fbe77edeac" />
 
-## Getting Started
+- **Halaman Registrasi**
+  img width="282" height="567" alt="register" src="https://github.com/user-attachments/assets/91af9645-05d2-46f2-a5b5-63fe2aa09613" />
 
-This project is a starting point for a Flutter application.
+- **Halaman Utama**
+  <img width="278" height="602" alt="home" src="https://github.com/user-attachments/assets/cf8e421c-81e4-4e06-9b6c-acf2f6bbe999" />
 
-A few resources to get you started if this is your first Flutter project:
+- **Halaman Daftar Buku**
+  <img width="287" height="597" alt="daftarbuku" src="https://github.com/user-attachments/assets/29724a42-0629-4018-8090-0dc83d83c544" />
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **Halaman Form Pinjam**
+  <img width="280" height="587" alt="formpinjam" src="https://github.com/user-attachments/assets/7372ab29-51bc-4b1e-9307-b6da09174d1f" />
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **Halaman Riwayat Peminjaman**
+  <img width="278" height="593" alt="riwayat" src="https://github.com/user-attachments/assets/67c1c6eb-3264-4496-9be9-113701f1b9c8" />
+
+- **Halaman Detail Peminjaman**
+  <img width="283" height="595" alt="detail" src="https://github.com/user-attachments/assets/b9240044-68c9-407c-a2ea-daebc095b207" />
+
+- **Halaman Edit Peminjaman**
+  <img width="279" height="590" alt="edit" src="https://github.com/user-attachments/assets/1481a44f-97bb-4a09-a014-fd90dd3d401d" />
+
+- **Halaman Profil**
+  <img width="274" height="591" alt="profil" src="https://github.com/user-attachments/assets/c3824781-1835-43f5-ba9c-34478ca5b79d" />
+
+  **VIDEO DEMO APLIKASI**
+  https://github.com/user-attachments/assets/df421582-8283-42ba-b2dd-e6e2c5d59444
+
+
