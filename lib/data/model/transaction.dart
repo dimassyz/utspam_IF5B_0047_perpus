@@ -8,7 +8,7 @@ class Transaction {
   final String status;
 
   Transaction({
-    required this.id, 
+    this.id, 
     required this.userId, 
     required this.bookId, 
     required this.tglPinjam, 

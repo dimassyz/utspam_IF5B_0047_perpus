@@ -157,10 +157,10 @@ class _BookListScreenState extends State<BookListScreen> {
                   height: 32,
                   child: ElevatedButton(
                     onPressed: () {
-                      // Navigator.push(
-                      //   context, 
-                      //   MaterialPageRoute(builder: (context) => LoanFormScreen(book: book))
-                      // );
+                      Navigator.push(
+                        context, 
+                        MaterialPageRoute(builder: (context) => LoanFormScreen(book: book))
+                      );
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text("Memilih: ${book.judul}")),
                       );
