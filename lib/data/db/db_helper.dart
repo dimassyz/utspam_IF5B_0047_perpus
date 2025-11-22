@@ -66,7 +66,7 @@ class DbHelper {
   Future<void> _insertDummyData(Database db) async {
     List<Map<String, dynamic>> books = [
       {
-        'judul': '1984',
+        'judul': 'Novel 1984',
         'genre': 'Novel',
         'harga_rental': 30000,
         'cover_path': 'assets/images/1984.jpg',
