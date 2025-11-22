@@ -84,12 +84,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Colors.blue,
+                  color: Colors.black,
                 ),
               ),
               const Text(
                 'Lengkapi data diri untuk mendaftar',
-                style: TextStyle(color: Colors.grey),
+                style: TextStyle(color: Colors.black54),
               ),
               const SizedBox(height: 24),
 
@@ -228,13 +228,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       child: ElevatedButton(
                         onPressed: _handleRegister,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue,
+                          backgroundColor: Colors.black,
                           foregroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                        child: const Text('DAFTAR SEKARANG', style: TextStyle(fontWeight: FontWeight.bold)),
+                        child: const Text('DAFTAR', style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
                     ),
                     
