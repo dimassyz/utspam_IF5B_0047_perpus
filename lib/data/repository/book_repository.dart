@@ -13,4 +13,18 @@ class BookRepository {
       return Book.fromMap(maps[i]);
     });
   }
+
+  Future<Book?> getBookById(int id) async {
+    final db = await _dbHelper.database;
+    final List<Map<String, dynamic>> maps = await db.query(
+      'books',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+
+    if (maps.isNotEmpty) {
+      return Book.fromMap(maps.first);
+    }
+    return null;
+  }
 }
