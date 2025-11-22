@@ -77,7 +77,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
           padding: const EdgeInsets.all(24.0),
           child: Column(
             children: [
-              const Icon(Icons.menu_book_rounded, size: 60, color: Colors.blue),
+              Image.asset(
+                'assets/images/logobuku.png',
+                width: 150,
+                height: 100,
+                ),
               const SizedBox(height: 10),
               const Text(
                 'Formulir Pendaftaran',
