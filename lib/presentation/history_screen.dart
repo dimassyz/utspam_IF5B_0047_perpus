@@ -145,21 +145,17 @@ class _HistoryScreenState extends State<HistoryScreen> {
           child: InkWell(
             borderRadius: BorderRadius.circular(12),
             onTap: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => LoanDetailScreen(
-              //       transaction: transaction, 
-              //       book: bookSnapshot.data!
-              //     )
-              //   )
-              // ).then((_) {
-              //   _loadSessionAndData();
-              // });
-              
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text("tes")),
-              );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LoanDetailScreen(
+                    transaction: transaction, 
+                    book: bookSnapshot.data!
+                  )
+                )
+              ).then((_) {
+                _loadSessionAndData();
+              });
             },
             child: Padding(
               padding: const EdgeInsets.all(12.0),
