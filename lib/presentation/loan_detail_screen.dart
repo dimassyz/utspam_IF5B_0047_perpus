@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import '../data/model/transaction.dart';
 import '../data/model/book.dart';
 import '../data/repository/transaction_repository.dart';
+import 'loan_edit_screen.dart';
 
 class LoanDetailScreen extends StatefulWidget {
   final Transaction transaction;
@@ -91,10 +92,20 @@ class _LoanDetailScreenState extends State<LoanDetailScreen> {
   // fungsi edit
   void _handleEdit() async {
 
-    
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text("blm dibuat")),
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => EditLoanScreen(
+          transaction: _currentTransaction, 
+          book: widget.book
+        )
+      )
     );
+    if (result != null && result is Transaction) {
+      setState(() {
+        _currentTransaction = result;
+      });
+    }
   }
 
   @override

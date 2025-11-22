@@ -21,9 +21,9 @@ class Transaction {
     int? id,
     int? userId,
     int? bookId,
-    String? loanDate,
-    int? loanDuration,
-    int? totalCost,
+    String? tglPinjam,
+    int? durasiPinjam,
+    int? totalBiaya, 
     String? status,
   }) {
     return Transaction(
