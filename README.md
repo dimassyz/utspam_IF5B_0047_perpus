@@ -5,8 +5,7 @@
   <img width="278" height="591" alt="login" src="https://github.com/user-attachments/assets/1307f6ba-34aa-453a-8562-21fbe77edeac" />
 
 - **Halaman Registrasi**
-- 
-  img width="282" height="567" alt="register" src="https://github.com/user-attachments/assets/91af9645-05d2-46f2-a5b5-63fe2aa09613" />
+- <img width="282" height="567" alt="register" src="https://github.com/user-attachments/assets/41f263b7-8bd4-49e2-b7ef-d2b816e45fc5" />
 
 - **Halaman Utama**
 - 
@@ -37,9 +36,7 @@
   <img width="274" height="591" alt="profil" src="https://github.com/user-attachments/assets/c3824781-1835-43f5-ba9c-34478ca5b79d" />
 
 - **VIDEO DEMO APLIKASI**
-- 
-
-https://github.com/user-attachments/assets/e0d0b187-eb2f-49a9-91c6-2312785348ce
+- https://github.com/user-attachments/assets/e0d0b187-eb2f-49a9-91c6-2312785348ce
 
 
 
